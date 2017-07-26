@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class NormalActivity extends AppCompatActivity {
 
     private TextView mTimeText;
     private ClockView mClockView;
@@ -18,23 +18,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_normal);
         mClockView = (ClockView) findViewById(R.id.clock_view);
         mTimeText = (TextView) findViewById(R.id.clock_text);
         mTimeText.setText("00 : 00");
-    }
-
-    public void onClockClick(View view) {
-
-        Calendar calendar = Calendar.getInstance();
-        double d = Math.random();
-        int hour = (int) (d * 24);
-        int minute = (int) (d * 60);
-        Log.d("MainActivity -->", hour + "--" + minute);
-
-        calendar.set(2017, 12, 12, hour, minute);
-        mClockView.start(calendar.getTimeInMillis());
-        mTimeText.setText(getTimeStr(hour, minute));
     }
 
     private String getTimeStr(int hour, int minute) {
@@ -43,9 +30,23 @@ public class MainActivity extends AppCompatActivity {
             result = "0" + hour;
         }
         if (minute < 10) {
-            result += " : " + "0" + hour;
+            result += " : " + "0" + minute;
+        } else {
+            result += " : " + minute;
         }
-        result += " : " + minute;
         return result;
+    }
+
+    public void onStartClick(View view) {
+
+        Calendar calendar = Calendar.getInstance();
+        double d = Math.random();
+        int hour = (int) (d * 24);
+        int minute = (int) (d * 60);
+        Log.d("NormalActivity -->", hour + "--" + minute);
+
+        calendar.set(2017, 12, 12, hour, minute);
+        mClockView.start(calendar.getTimeInMillis());
+        mTimeText.setText(getTimeStr(hour, minute));
     }
 }

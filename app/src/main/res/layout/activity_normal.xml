@@ -7,23 +7,36 @@
     android:background="#ef9a9a"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="16dp"
     >
 
     <com.qin.clock.ClockView
         android:id="@+id/clock_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center_horizontal"
         android:background="@android:color/white"
-        android:onClick="onClockClick"
         />
 
     <TextView
         android:id="@+id/clock_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textColor="#eeeeee"
+        android:textSize="18sp"
+        />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:onClick="onStartClick"
+        android:text="start"
         android:textColor="#eeeeee"
-        android:textSize="14sp"
+        android:textSize="24sp"
         />
+
 
 </LinearLayout>
