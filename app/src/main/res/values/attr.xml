@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="ClockView">
+        <attr name="hourColor" format="color"/>
+        <attr name="minuteColor" format="color"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="dialColor" format="color"/>
+
+        <attr name="hourLength" format="dimension"/>
+        <attr name="minuteLength" format="dimension"/>
+        <attr name="hourWidth" format="dimension"/>
+        <attr name="minuteWidth" format="dimension"/>
+
+        <attr name="isShowMinute" format="boolean"/>
+        <attr name="isShowHour" format="boolean"/>
+    </declare-styleable>
 
 </resources>

@@ -2,6 +2,7 @@ package com.qin.clock;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -28,11 +29,11 @@ public class ClockView extends View {
     private int mCircleRadius = 100;
     private int mStrokeWidth = 10;
 
-    private int mHourLength;
-    private int mMinuteLength;
+    private float mHourLength = 0;
+    private float mMinuteLength = 0;
 
-    private int mHourWidth;
-    private int mMinuteWith;
+    private float mHourWidth = 8;
+    private float mMinuteWith = 6;
 
     @ColorInt
     private int mHourColor = 0xfff5f5f5;
@@ -42,6 +43,9 @@ public class ClockView extends View {
     private int mClockBorderColor = 0xff616161;
     @ColorInt
     private int mDialColor = 0xff81d4fa;
+
+    private boolean isShowHour = true;
+    private boolean isShowMinute = true;
 
     private long mTimeMills = 0;
 
@@ -72,7 +76,26 @@ public class ClockView extends View {
 
     private void init(AttributeSet attrs) {
         setBackgroundColor(Color.TRANSPARENT);
+        initAttrs(attrs);
         initDrawTool();
+    }
+
+    private void initAttrs(AttributeSet attrs) {
+        TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.ClockView);
+        mHourColor = ta.getColor(R.styleable.ClockView_hourColor, mHourColor);
+        mMinuteColor = ta.getColor(R.styleable.ClockView_minuteColor, mMinuteColor);
+        mClockBorderColor = ta.getColor(R.styleable.ClockView_borderColor, mClockBorderColor);
+        mDialColor = ta.getColor(R.styleable.ClockView_dialColor, mDialColor);
+
+        mHourWidth = ta.getDimension(R.styleable.ClockView_hourWidth, mHourWidth);
+        mMinuteWith = ta.getDimension(R.styleable.ClockView_minuteWidth, mMinuteWith);
+        mHourLength = ta.getDimension(R.styleable.ClockView_hourLength, mHourLength);
+        mMinuteLength = ta.getDimension(R.styleable.ClockView_minuteLength, mMinuteLength);
+        Log.d(TAG, "mHourLength -->" + mHourLength + "\nmMinuteLength -->" + mMinuteLength);
+
+        isShowHour = ta.getBoolean(R.styleable.ClockView_isShowHour, isShowHour);
+        isShowMinute = ta.getBoolean(R.styleable.ClockView_isShowMinute, isShowMinute);
+        ta.recycle();
     }
 
     private void initDrawTool() {
@@ -116,22 +139,27 @@ public class ClockView extends View {
         canvas.restore();
 
         // Draw hour
-        canvas.save();
-        canvas.rotate(hourRote, centerX, centerY);
-        mHourPaint.setStrokeWidth(mHourWidth);
-        mHourPaint.setColor(mHourColor);
-        canvas.drawLine(centerX, centerY, centerX, centerY - mHourLength, mHourPaint);
-        canvas.drawCircle(centerX, centerY, 2, mHourPaint);
-        canvas.restore();
+        if (isShowHour) {
+            canvas.save();
+            canvas.rotate(hourRote, centerX, centerY);
+            mHourPaint.setStrokeWidth(mHourWidth);
+            mHourPaint.setColor(mHourColor);
+            canvas.drawLine(centerX, centerY, centerX, centerY - mHourLength, mHourPaint);
+            canvas.drawCircle(centerX, centerY, mHourWidth / 3, mHourPaint);
+            canvas.restore();
+        }
+
 
         // Draw minute
-        canvas.save();
-        canvas.rotate(minuteRote, centerX, centerY);
-        mMinutePaint.setStrokeWidth(mMinuteWith);
-        mMinutePaint.setColor(mMinuteColor);
-        canvas.drawLine(centerX, centerY, centerX, centerY - mMinuteLength, mMinutePaint);
-        canvas.drawCircle(centerX, centerY, 2, mMinutePaint);
-        canvas.restore();
+        if (isShowMinute) {
+            canvas.save();
+            canvas.rotate(minuteRote, centerX, centerY);
+            mMinutePaint.setStrokeWidth(mMinuteWith);
+            mMinutePaint.setColor(mMinuteColor);
+            canvas.drawLine(centerX, centerY, centerX, centerY - mMinuteLength, mMinutePaint);
+//            canvas.drawCircle(centerX, centerY, mHourWidth / 3, mMinutePaint);
+            canvas.restore();
+        }
     }
 
     @Override
@@ -167,10 +195,15 @@ public class ClockView extends View {
         }
 
         mCircleRadius = (int) ((width - getPaddingRight() - getPaddingLeft() - mStrokeWidth) / 2.0);
-        mHourWidth = (int) (mCircleRadius * 0.08);
-        mMinuteWith = (int) (mCircleRadius * 0.06);
-        mHourLength = (int) (mCircleRadius * 0.6);
-        mMinuteLength = (int) (mCircleRadius * 0.8);
+        // change needle width fixed
+//        mHourWidth = (int) (mCircleRadius * 0.08);
+//        mMinuteWith = (int) (mCircleRadius * 0.06);
+        if (mHourLength == 0) {
+            mHourLength = (int) (mCircleRadius * 0.6);
+        }
+        if (mMinuteLength == 0) {
+            mMinuteLength = (int) (mCircleRadius * 0.8);
+        }
         centerX = mCircleRadius + mStrokeWidth / 2 + getPaddingLeft();
         centerY = mCircleRadius + mStrokeWidth / 2 + getPaddingRight();
 
@@ -266,14 +299,21 @@ public class ClockView extends View {
         mHourAnimator.start();
     }
 
-    private void clearAnim() {
-        if (mMinuteAnimator != null && (mMinuteAnimator.isStarted() || mMinuteAnimator.isRunning())) {
-            mMinuteAnimator.cancel();
-        }
-
+    public void clearHourAnim() {
         if (mHourAnimator != null && (mHourAnimator.isStarted() || mHourAnimator.isRunning())) {
             mHourAnimator.cancel();
         }
+    }
+
+    public void clearMinuteAnim() {
+        if (mMinuteAnimator != null && (mMinuteAnimator.isStarted() || mMinuteAnimator.isRunning())) {
+            mMinuteAnimator.cancel();
+        }
+    }
+
+    public void clearAnim() {
+        clearHourAnim();
+        clearMinuteAnim();
     }
 
     private int getHourRote(int hour) {
@@ -290,19 +330,44 @@ public class ClockView extends View {
     /* public method*/
 
     public void start(long timeMills) {
-        int hour = com.qin.clock.utils.TimeUtils.Mills2Hour(timeMills);
+        startHour(timeMills);
+        startMinute(timeMills);
+    }
+
+    public void startMinute(long timeMills) {
         int minute = com.qin.clock.utils.TimeUtils.Mills2Minute(timeMills);
         mTimeMills = timeMills;
 
-        Log.d(TAG, "hour-->" + hour);
         Log.d(TAG, "minute-->" + minute);
 
-        oldHourRote = hourRote;
+        startMinute(minute);
+    }
+
+    public void startMinute(int rote) {
         oldMinuteRote = minuteRote;
 
-        clearAnim();
-        startMinuteAnim(minute);
-        startHorAnimator(hour);
+        clearMinuteAnim();
+        if (isShowMinute) {
+            startMinuteAnim(rote);
+        }
+    }
+
+    public void startHour(long timeMills) {
+        int hour = com.qin.clock.utils.TimeUtils.Mills2Hour(timeMills);
+        mTimeMills = timeMills;
+
+        Log.d(TAG, "hour-->" + hour);
+
+        startHour(hour);
+    }
+
+    public void startHour(int rote) {
+        oldHourRote = hourRote;
+
+        clearHourAnim();
+        if (isShowHour) {
+            startHorAnimator(rote);
+        }
     }
 
     public ClockView setCircleRadius(int circleRadius) {
@@ -352,6 +417,16 @@ public class ClockView extends View {
 
     public ClockView setDialColor(int dialColor) {
         mDialColor = dialColor;
+        return this;
+    }
+
+    public ClockView setShowHour(boolean showHour) {
+        isShowHour = showHour;
+        return this;
+    }
+
+    public ClockView setShowMinute(boolean showMinute) {
+        isShowMinute = showMinute;
         return this;
     }
 
