@@ -1,14 +1,14 @@
 package com.qin.clock;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 /**
- * 请描述使用该类使用方法！！！
- *
  * @author wenqin 2017-07-26 11:46
  */
 
@@ -25,6 +25,12 @@ public class ClockActivity extends AppCompatActivity {
         mMinuteClock = (ClockView) findViewById(R.id.minute_clock);
         mSecondClock = (ClockView) findViewById(R.id.second_clock);
         mTimeText = (TextView) findViewById(R.id.time_text);
+
+        mMinuteClock.setDialColor(ContextCompat.getColor(this, R.color.blue)).setMinuteColor(Color.WHITE)
+                .setClockBorderColor(Color.WHITE)
+                .draw();
+
+        mSecondClock.setDialColor(ContextCompat.getColor(this, R.color.blue));
     }
 
     public void onStartClick(View view) {

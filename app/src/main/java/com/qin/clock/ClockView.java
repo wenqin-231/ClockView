@@ -36,13 +36,13 @@ public class ClockView extends View {
     private float mMinuteWith = 6;
 
     @ColorInt
-    private int mHourColor = 0xfff5f5f5;
+    private int mHourColor = 0xff616161;
     @ColorInt
-    private int mMinuteColor = 0xfff5f5f5;
+    private int mMinuteColor = 0xff616161;
     @ColorInt
     private int mClockBorderColor = 0xff616161;
     @ColorInt
-    private int mDialColor = 0xff81d4fa;
+    private int mDialColor = Color.TRANSPARENT;
 
     private boolean isShowHour = true;
     private boolean isShowMinute = true;
@@ -400,22 +400,22 @@ public class ClockView extends View {
         return this;
     }
 
-    public ClockView setHourColor(int hourColor) {
+    public ClockView setHourColor(@ColorInt int hourColor) {
         mHourColor = hourColor;
         return this;
     }
 
-    public ClockView setMinuteColor(int minuteColor) {
+    public ClockView setMinuteColor(@ColorInt int minuteColor) {
         mMinuteColor = minuteColor;
         return this;
     }
 
-    public ClockView setClockBorderColor(int clockBorderColor) {
+    public ClockView setClockBorderColor(@ColorInt int clockBorderColor) {
         mClockBorderColor = clockBorderColor;
         return this;
     }
 
-    public ClockView setDialColor(int dialColor) {
+    public ClockView setDialColor(@ColorInt int dialColor) {
         mDialColor = dialColor;
         return this;
     }

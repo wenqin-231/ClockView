@@ -32,7 +32,6 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:padding="10dp"
-            app:borderColor="#eeeeee"
             app:isShowHour="false"
             />
 
@@ -55,17 +54,14 @@
         android:gravity="center"
         android:text="00 : 00 : 00"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="22sp"
         />
 
     <TextView
+        style="@style/StartViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:onClick="onStartClick"
-        android:text="Start"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
         />
 
 </LinearLayout>
