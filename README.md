@@ -19,4 +19,30 @@ I set the sample to show the different color in ColorView without hour point.
 
 ## Useage
 
-Just copy the code and change it if you like.
+In code:
+
+```
+clockView.setDialColor(ContextCompat.getColor(this, R.color.blue))
+        .setMinuteColor(Color.WHITE)
+        .setClockBorderColor(Color.WHITE)
+        ...
+        .draw();
+```
+
+In xml :
+
+```
+<com.qin.clock.ClockView
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    app:dialColor="@color/colorAccent"
+    app:isShowHour="false"
+    ...
+    />
+```
+
+
+
+## More
+
+Hope you would like it.
