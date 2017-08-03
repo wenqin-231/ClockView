@@ -157,7 +157,7 @@ public class ClockView extends View {
             mMinutePaint.setStrokeWidth(mMinuteWith);
             mMinutePaint.setColor(mMinuteColor);
             canvas.drawLine(centerX, centerY, centerX, centerY - mMinuteLength, mMinutePaint);
-//            canvas.drawCircle(centerX, centerY, mHourWidth / 3, mMinutePaint);
+            canvas.drawCircle(centerX, centerY, mHourWidth / 3, mMinutePaint);
             canvas.restore();
         }
     }

@@ -41,7 +41,7 @@ public class ClockActivity extends AppCompatActivity {
         double d3 = Math.random();
         int second = (int) (d3 * 60);
 
-        mHourClock.startMinute(hour);
+        mHourClock.startHour(hour);
         mMinuteClock.startMinute(minute);
         mSecondClock.startMinute(second);
 

@@ -24,7 +24,8 @@
             android:layout_height="70dp"
             android:padding="10dp"
             app:dialColor="@color/colorAccent"
-            app:isShowHour="false"
+            app:hourLength="15dp"
+            app:isShowMinute="false"
             />
 
         <com.qin.clock.ClockView
@@ -33,6 +34,7 @@
             android:layout_height="70dp"
             android:padding="10dp"
             app:isShowHour="false"
+            app:minuteLength="15dp"
             />
 
         <com.qin.clock.ClockView
@@ -42,6 +44,7 @@
             android:padding="10dp"
             app:isShowHour="false"
             app:minuteColor="@color/colorAccent"
+            app:minuteLength="15dp"
             />
 
     </LinearLayout>
