@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.lewis.ClockView;
+import com.lewis.clockview.ClockView;
 
 import java.util.Calendar;
 

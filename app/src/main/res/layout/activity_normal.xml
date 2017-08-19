@@ -10,7 +10,7 @@
     android:padding="16dp"
     >
 
-    <com.lewis.ClockView
+    <com.lewis.clockview.ClockView
         android:id="@+id/clock_view"
         android:layout_width="120dp"
         android:layout_height="120dp"

@@ -23,7 +23,7 @@ I set the sample to show the different color in ColorView without hour point.
 
 ```
 dependencies {
-   compile 'com.lewis:library:0.3'
+   compile 'com.lewis.clockview:library:0.3'
 }
 ```
 
@@ -42,7 +42,7 @@ clockView.setDialColor(ContextCompat.getColor(this, R.color.blue))
 In xml :
 
 ```
-<com.lewis.ClockView
+<com.lewis.clockview.ClockView
     android:layout_width="70dp"
     android:layout_height="70dp"
     app:dialColor="@color/colorAccent"

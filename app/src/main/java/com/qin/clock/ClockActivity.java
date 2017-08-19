@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.lewis.ClockView;
+import com.lewis.clockview.ClockView;
 
 /**
  * @author wenqin 2017-07-26 11:46
