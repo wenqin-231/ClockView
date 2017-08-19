@@ -1,4 +1,4 @@
-package com.qin.clock;
+package com.lewis;
 
 import org.junit.Test;
 

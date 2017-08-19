@@ -1,4 +1,4 @@
-package com.qin.clock;
+package com.lewis;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+
+import com.lewis.utils.TimeUtils;
 
 /**
  * @author wenqin 2017-07-20 09:40
@@ -335,7 +337,7 @@ public class ClockView extends View {
     }
 
     public void startMinute(long timeMills) {
-        int minute = com.qin.clock.utils.TimeUtils.Mills2Minute(timeMills);
+        int minute = TimeUtils.Mills2Minute(timeMills);
         mTimeMills = timeMills;
 
         Log.d(TAG, "minute-->" + minute);
@@ -353,7 +355,7 @@ public class ClockView extends View {
     }
 
     public void startHour(long timeMills) {
-        int hour = com.qin.clock.utils.TimeUtils.Mills2Hour(timeMills);
+        int hour = TimeUtils.Mills2Hour(timeMills);
         mTimeMills = timeMills;
 
         Log.d(TAG, "hour-->" + hour);

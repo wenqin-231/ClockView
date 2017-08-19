@@ -1,4 +1,4 @@
-package com.qin.clock.utils;
+package com.lewis.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 请描述使用该类使用方法！！！
  *
  * @author wenqin 2017-07-21 10:42
  */

@@ -1,4 +1,4 @@
-package com.qin.clock;
+package com.lewis;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.test.clock", appContext.getPackageName());
+        assertEquals("com.lewis.test", appContext.getPackageName());
     }
 }

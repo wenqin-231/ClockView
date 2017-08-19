@@ -18,7 +18,7 @@
         android:orientation="horizontal"
         >
 
-        <com.qin.clock.ClockView
+        <com.lewis.ClockView
             android:id="@+id/hour_clock"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -28,7 +28,7 @@
             app:isShowMinute="false"
             />
 
-        <com.qin.clock.ClockView
+        <com.lewis.ClockView
             android:id="@+id/minute_clock"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -37,7 +37,7 @@
             app:minuteLength="15dp"
             />
 
-        <com.qin.clock.ClockView
+        <com.lewis.ClockView
             android:id="@+id/second_clock"
             android:layout_width="70dp"
             android:layout_height="70dp"

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lewis.ClockView;
+
 import java.util.Calendar;
 
 public class NormalActivity extends AppCompatActivity {
