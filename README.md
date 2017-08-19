@@ -19,16 +19,6 @@ I set the sample to show the different color in ColorView without hour point.
 
 ## Usage
 
-#### Step1:
-
-```
-dependencies {
-   compile 'com.lewis.clockview:library:0.3'
-}
-```
-
-#### Step2:
-
 In code:
 
 ```
