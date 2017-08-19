@@ -10,6 +10,7 @@
         <attr name="minuteLength" format="dimension"/>
         <attr name="hourWidth" format="dimension"/>
         <attr name="minuteWidth" format="dimension"/>
+        <attr name="borderWidth" format="dimension"/>
 
         <attr name="isShowMinute" format="boolean"/>
         <attr name="isShowHour" format="boolean"/>

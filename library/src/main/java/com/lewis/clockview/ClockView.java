@@ -94,6 +94,7 @@ public class ClockView extends View {
         mMinuteWith = ta.getDimension(R.styleable.ClockView_minuteWidth, mMinuteWith);
         mHourLength = ta.getDimension(R.styleable.ClockView_hourLength, mHourLength);
         mMinuteLength = ta.getDimension(R.styleable.ClockView_minuteLength, mMinuteLength);
+        mStrokeWidth = (int) ta.getDimension(R.styleable.ClockView_borderWidth, mStrokeWidth);
         Log.d(TAG, "mHourLength -->" + mHourLength + "\nmMinuteLength -->" + mMinuteLength);
 
         isShowHour = ta.getBoolean(R.styleable.ClockView_isShowHour, isShowHour);
