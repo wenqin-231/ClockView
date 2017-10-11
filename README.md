@@ -43,6 +43,29 @@ In xml :
 
 
 
+## How to
+
+To get a Git project into your build:
+
+**Step 1.** Add the JitPack repository to your build file
+
+```
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+**Step 2.** Add the dependency
+
+```
+	dependencies {
+		compile 'com.github.wenqin-231:ClockView:v0.34'
+	}
+```
+
 ## More
 
 Hope you would like it.
