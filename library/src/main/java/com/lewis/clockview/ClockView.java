@@ -133,12 +133,12 @@ public class ClockView extends View {
 
         canvas.save();
         mDialPaint.setColor(mDialColor);
-        mCirclePaint.setStrokeWidth(mStrokeWidth);
         canvas.drawCircle(centerX, centerY, mCircleRadius, mDialPaint);
         canvas.restore();
 
         canvas.save();
         mCirclePaint.setColor(mClockBorderColor);
+        mCirclePaint.setStrokeWidth(mStrokeWidth);
         canvas.drawCircle(centerX, centerY, mCircleRadius, mCirclePaint);
         canvas.restore();
 
@@ -209,7 +209,7 @@ public class ClockView extends View {
             mMinuteLength = (int) (mCircleRadius * 0.8);
         }
         centerX = mCircleRadius + mStrokeWidth / 2 + getPaddingLeft();
-        centerY = mCircleRadius + mStrokeWidth / 2 + getPaddingRight();
+        centerY = mCircleRadius + mStrokeWidth / 2 + getPaddingTop();
 
         setMeasuredDimension(width, height);
     }
@@ -218,14 +218,14 @@ public class ClockView extends View {
         float startDegree = oldMinuteRote;
         Log.d(TAG, "startDegree-->" + startDegree);
 
-        float roteDiff = getMinuteRote(minute) - startDegree;
         float endDegree = getMinuteRote(minute);
+        float roteDiff = endDegree - startDegree;
         if (roteDiff < 0) {
-            endDegree = 360f + getMinuteRote(minute);
+            endDegree += 360f;
         }
-        if (endDegree < startDegree) {
-            endDegree = getMinuteRote(minute);
-        }
+//        if (endDegree - startDegree > 180) {
+//            endDegree = endDegree - 360f;
+//        }
         Log.d(TAG, "endDegree-->" + endDegree);
         final float floatDegree = endDegree;
 
@@ -264,13 +264,11 @@ public class ClockView extends View {
         Log.d(TAG, "startDegree-->" + startDegree);
 
         float endDegree = getHourRote(hour);
-        float roteDiff = getHourRote(hour) - startDegree;
+        float roteDiff = endDegree - startDegree;
         if (roteDiff < 0) {
-            endDegree = 360f + getHourRote(hour);
+            endDegree += 360f;
         }
-        if (endDegree < startDegree) {
-            endDegree = getHourRote(hour);
-        }
+        
         Log.d(TAG, "endDegree-->" + endDegree);
         final float floatDegree = endDegree;
         mHourAnimator = ValueAnimator.ofFloat(startDegree, endDegree);
