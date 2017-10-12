@@ -23,6 +23,13 @@ import com.lewis.clockview.utils.TimeUtils;
 public class ClockView extends View {
 
     private static final String TAG = "ClockView";
+    private static final int MIN_TIME_DURATION = 500;
+
+    public enum Rate {
+        SLOW,
+        NORMAL,
+        FAST
+    }
 
     private Paint mDialPaint;
     private Paint mCirclePaint;
@@ -63,6 +70,7 @@ public class ClockView extends View {
 
     private ValueAnimator mMinuteAnimator;
     private ValueAnimator mHourAnimator;
+    private Rate mCurrentRate = Rate.NORMAL;  // clock round rate with normal , fast and slow
 
     public ClockView(Context context) {
         this(context, null);
@@ -232,7 +240,8 @@ public class ClockView extends View {
         mMinuteAnimator = ValueAnimator.ofFloat(startDegree, endDegree);
         minuteRote = 0f;
 
-        mMinuteAnimator.setDuration(500);
+        mMinuteAnimator.setDuration((long) (MIN_TIME_DURATION +
+                getRoundRate(mCurrentRate) * (endDegree - startDegree)));
         mMinuteAnimator.setInterpolator(new LinearInterpolator());
         mMinuteAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
@@ -259,6 +268,18 @@ public class ClockView extends View {
         mMinuteAnimator.start();
     }
 
+    private float getRoundRate(Rate currentRate) {
+        switch (currentRate) {
+            case NORMAL:
+                return 1.0f;
+            case FAST:
+                return 0.3f;
+            case SLOW:
+                return 2f;
+        }
+        return 0;
+    }
+
     public void startHorAnimator(int hour) {
         float startDegree = oldHourRote;
         Log.d(TAG, "startDegree-->" + startDegree);
@@ -274,7 +295,8 @@ public class ClockView extends View {
         mHourAnimator = ValueAnimator.ofFloat(startDegree, endDegree);
         hourRote = 0f;
 
-        mHourAnimator.setDuration(500);
+        mHourAnimator.setDuration((long) (MIN_TIME_DURATION +
+                getRoundRate(mCurrentRate) * (endDegree - startDegree)));
         mHourAnimator.setInterpolator(new LinearInterpolator());
         mHourAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
@@ -429,6 +451,11 @@ public class ClockView extends View {
 
     public ClockView setShowMinute(boolean showMinute) {
         isShowMinute = showMinute;
+        return this;
+    }
+
+    public ClockView setAnimRate(Rate rate) {
+        mCurrentRate = rate;
         return this;
     }
 
