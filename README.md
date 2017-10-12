@@ -62,7 +62,7 @@ To get a Git project into your build:
 
 ```
 	dependencies {
-		compile 'com.github.wenqin-231:ClockView:v0.34'
+		compile 'com.github.wenqin-231:ClockView:v0.35'
 	}
 ```
 
