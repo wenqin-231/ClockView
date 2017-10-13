@@ -1,4 +1,4 @@
-package com.lewis.clockview;
+package com.lewis.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.lewis.R;
-import com.lewis.clockview.utils.TimeUtils;
+import com.lewis.widget.utils.TimeUtils;
 
 /**
  * @author wenqin 2017-07-20 09:40

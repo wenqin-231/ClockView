@@ -1,4 +1,4 @@
-package com.lewis.clockview.utils;
+package com.lewis.widget.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
